@@ -5,7 +5,7 @@ function Header() {
     <header className="header">
       <div className="header-content">
         <h2>Solubility Oracle</h2>
-        <p>Masters Project - AI-Powered Molecular Property Prediction</p>
+        <p>AI-Powered Molecular Property Prediction</p>
       </div>
     </header>
   )

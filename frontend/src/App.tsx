@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import PredictionForm from './components/PredictionForm'
 import Header from './components/Header'
@@ -11,10 +11,37 @@ export interface PredictionResult {
   message: string
 }
 
+interface ModelStatus {
+  model_loaded: boolean
+  model_type: string
+  training_complete: boolean
+}
+
 function App() {
   const [result, setResult] = useState<PredictionResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [modelStatus, setModelStatus] = useState<ModelStatus | null>(null)
+
+  useEffect(() => {
+    // Check model status on component mount
+    const checkModelStatus = async () => {
+      try {
+        const response = await fetch('http://localhost:8050/api/v1/health')
+        if (response.ok) {
+          const data = await response.json()
+          setModelStatus({
+            model_loaded: data.model_loaded || false,
+            model_type: data.model_type || 'AttentiveFP Ensemble',
+            training_complete: data.model_loaded || false
+          })
+        }
+      } catch (err) {
+        console.log('Could not fetch model status')
+      }
+    }
+    checkModelStatus()
+  }, [])
 
   const handlePrediction = async (smiles: string) => {
     setLoading(true)
@@ -53,18 +80,39 @@ function App() {
           <p className="subtitle">
             AI-Powered Aqueous Solubility Prediction using AttentiveFP
           </p>
-          
-          <PredictionForm 
-            onSubmit={handlePrediction} 
+
+          {modelStatus && (
+            <div className="model-status">
+              <div className="status-item">
+                <span className="status-label">Model Status:</span>
+                <span className={`status-badge ${modelStatus.model_loaded ? 'status-ready' : 'status-loading'}`}>
+                  {modelStatus.model_loaded ? '✓ Ready' : '⏳ Loading...'}
+                </span>
+              </div>
+              <div className="status-item">
+                <span className="status-label">Architecture:</span>
+                <span className="status-value">{modelStatus.model_type}</span>
+              </div>
+              {modelStatus.training_complete && (
+                <div className="status-item">
+                  <span className="status-label">Training:</span>
+                  <span className="status-badge status-complete">✓ Complete</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          <PredictionForm
+            onSubmit={handlePrediction}
             loading={loading}
           />
-          
+
           {error && (
             <div className="error-message">
               <strong>Error:</strong> {error}
             </div>
           )}
-          
+
           {result && <Results result={result} />}
         </div>
       </main>

@@ -1,29 +1,33 @@
 .results {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 2px solid #e2e8f0;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 3px solid #10b981;
 }
 
 .results-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .result-card {
-  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border-radius: 14px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #d1fae5;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
 }
 
 .result-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 0;
+  border-bottom: 1px solid #d1fae5;
 }
 
 .result-item:last-child {
@@ -31,39 +35,50 @@
 }
 
 .result-label {
-  font-weight: 600;
-  color: #4a5568;
+  font-weight: 700;
+  color: #065f46;
   font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .result-value-smiles {
   font-family: 'Courier New', monospace;
   background: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  color: #2d3748;
+  padding: 0.625rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1f2937;
   word-break: break-all;
+  border: 1px solid #d1d5db;
 }
 
 .result-value-logs {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 800;
   font-family: 'Courier New', monospace;
+  color: #059669;
+  background: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  border: 2px solid #10b981;
 }
 
 .result-value-interpretation {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #10b981;
 }
 
 .result-message {
-  padding: 0.75rem;
-  background-color: #c6f6d5;
-  border: 1px solid #9ae6b4;
-  border-radius: 8px;
-  color: #22543d;
-  font-size: 0.9rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border: 2px solid #6ee7b7;
+  border-radius: 10px;
+  color: #065f46;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
 }
 
 @media (max-width: 768px) {

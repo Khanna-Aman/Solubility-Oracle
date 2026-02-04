@@ -6,6 +6,13 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 import torch
+import sys
+from pathlib import Path
+
+# Add parent directory to path for imports
+parent_dir = str(Path(__file__).parent.parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
 from models.ensemble import SolubilityEnsemble
 from utils.molecular import validate_smiles

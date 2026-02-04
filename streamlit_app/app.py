@@ -9,6 +9,13 @@ import plotly.express as px
 import plotly.graph_objects as go
 from typing import Optional
 import torch
+import sys
+from pathlib import Path
+
+# Add parent directory to path for imports
+parent_dir = str(Path(__file__).parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
 from models.ensemble import SolubilityEnsemble
 from utils.molecular import validate_smiles, smiles_to_graph, get_molecular_descriptors

@@ -107,8 +107,14 @@ def get_molecular_descriptors(smiles: str) -> Optional[np.ndarray]:
             Descriptors.NumRotatableBonds(mol),
             Descriptors.NumAromaticRings(mol),
             Descriptors.NumSaturatedRings(mol),
-            Descriptors.FractionCsp3(mol),
         ]
+
+        # Try to add FractionCsp3 if available (different RDKit versions)
+        try:
+            from rdkit.Chem import Lipinski
+            rdkit_descriptors.append(Lipinski.FractionCsp3(mol))
+        except (ImportError, AttributeError):
+            rdkit_descriptors.append(0.0)  # Fallback
         
         # Mordred descriptors (subset for speed)
         calc = Calculator(descriptors, ignore_3D=True)
