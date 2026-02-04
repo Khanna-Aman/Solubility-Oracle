@@ -99,18 +99,12 @@ solubility-oracle/
 │   ├── package.json
 │   └── vite.config.ts
 │
-├── tests/                # Test suite
-│   ├── test_models.py
-│   └── test_utils.py
-│
-├── data/                 # Data directory
-│   ├── raw/             # Raw datasets
-│   ├── processed/       # Processed data
-│   └── splits/          # Train/val/test splits
-│
-├── checkpoints/          # Model checkpoints
-└── notebooks/            # Jupyter notebooks
+└── tests/                # Test suite
+    ├── test_models.py
+    └── test_utils.py
 ```
+
+**Note:** `data/`, `checkpoints/`, and `notebooks/` directories are created automatically during training and are gitignored.
 
 ---
 

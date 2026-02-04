@@ -64,10 +64,9 @@ env/
 *.ckpt
 *.parquet
 *.feather
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+data/
+checkpoints/
+notebooks/
 
 # ===== Logs =====
 *.log
