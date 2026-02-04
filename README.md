@@ -227,5 +227,5 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**Version**: 1.0.0 | **Status**: Active Development
+**Version**: 1.0.0
 
