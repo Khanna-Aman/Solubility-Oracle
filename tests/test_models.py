@@ -5,10 +5,17 @@ Tests for model implementations
 import pytest
 import torch
 from torch_geometric.data import Data
+import sys
+from pathlib import Path
 
-from models.attentivefp import AttentiveFP
-from models.hybrid import HybridModel
-from models.ensemble import SolubilityEnsemble
+# Add parent directory to path for imports
+parent_dir = str(Path(__file__).parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+from src.models.attentivefp import AttentiveFP
+from src.models.hybrid import HybridModel
+from src.models.ensemble import SolubilityEnsemble
 
 
 def test_attentivefp_creation():

@@ -10,13 +10,19 @@ from torch_geometric.data import Batch
 import numpy as np
 from tqdm import tqdm
 import os
+import sys
 from pathlib import Path
 
-from models.attentivefp import AttentiveFP
-from models.hybrid import HybridModel
-from models.ensemble import SolubilityEnsemble
-from utils.molecular import smiles_to_graph, get_molecular_descriptors
-from utils.data_loader import load_dataset, preprocess_data, scaffold_split
+# Add parent directory to path for imports
+parent_dir = str(Path(__file__).parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+from src.models.attentivefp import AttentiveFP
+from src.models.hybrid import HybridModel
+from src.models.ensemble import SolubilityEnsemble
+from src.utils.molecular import smiles_to_graph, get_molecular_descriptors
+from src.utils.data_loader import load_dataset, preprocess_data, scaffold_split
 
 
 class SolubilityDataset(Dataset):

@@ -61,25 +61,55 @@ Predict molecular solubility using Graph Neural Networks (GNNs) with AttentiveFP
 
 ```
 solubility-oracle/
-├── api/                    # FastAPI backend
-│   ├── main.py            # API endpoints
-│   └── routes/            # Route handlers
-├── data/                  # Dataset management
-│   ├── raw/              # Original datasets
-│   ├── processed/        # Preprocessed data
-│   └── splits/           # Train/val/test splits
-├── models/               # Model implementations
-│   ├── attentivefp.py   # AttentiveFP architecture
-│   ├── hybrid.py        # Hybrid model
-│   └── ensemble.py      # Ensemble wrapper
-├── frontend/            # React application
+├── README.md                # Project documentation
+├── CONTRIBUTING.md          # Contribution guidelines
+├── LICENSE                  # MIT License
+├── requirements.txt         # Python dependencies
+├── .gitignore              # Git ignore rules
+├── .env.example            # Environment template
+│
+├── src/                    # Source code
+│   ├── api/               # FastAPI backend
+│   │   ├── main.py       # API application
+│   │   └── routes/       # API endpoints
+│   ├── models/           # Model implementations
+│   │   ├── attentivefp.py  # AttentiveFP GNN
+│   │   ├── hybrid.py       # Hybrid model
+│   │   └── ensemble.py     # Ensemble wrapper
+│   ├── utils/            # Utilities
+│   │   ├── molecular.py    # SMILES processing
+│   │   └── data_loader.py  # Data loading
+│   └── streamlit_app/    # Streamlit dashboard
+│       └── app.py
+│
+├── scripts/               # Utility scripts
+│   ├── download_data.py  # Dataset downloader
+│   ├── train.py          # Training pipeline
+│   ├── install.bat       # Installation script
+│   ├── run_backend.bat   # Run FastAPI
+│   ├── run_frontend.bat  # Run React app
+│   ├── run_streamlit.bat # Run Streamlit
+│   ├── run_tests.bat     # Run tests
+│   └── verify_setup.bat  # Verify installation
+│
+├── frontend/             # React + TypeScript UI
 │   ├── src/
-│   └── public/
-├── streamlit_app/       # Streamlit dashboard
-│   ├── app.py
-│   └── styles/
-├── notebooks/           # Jupyter notebooks
-└── tests/              # Test suite
+│   │   ├── App.tsx
+│   │   └── components/
+│   ├── package.json
+│   └── vite.config.ts
+│
+├── tests/                # Test suite
+│   ├── test_models.py
+│   └── test_utils.py
+│
+├── data/                 # Data directory
+│   ├── raw/             # Raw datasets
+│   ├── processed/       # Processed data
+│   └── splits/          # Train/val/test splits
+│
+├── checkpoints/          # Model checkpoints
+└── notebooks/            # Jupyter notebooks
 ```
 
 ---
@@ -117,25 +147,34 @@ npm install
 
 ### Running the Application
 
-**Option 1: Streamlit Dashboard (Quick Start)**
+**Windows (One-Click Scripts):**
 ```bash
-streamlit run streamlit_app/app.py
+# Run Streamlit dashboard
+scripts\run_streamlit.bat
+
+# Or run full stack
+scripts\run_backend.bat    # Terminal 1
+scripts\run_frontend.bat   # Terminal 2
 ```
 
-**Option 2: Full Stack (FastAPI + React)**
+**Manual (Linux/Mac):**
 
-Terminal 1 - Backend:
+Option 1 - Streamlit Dashboard:
 ```bash
-uvicorn api.main:app --host 0.0.0.0 --port 8050 --reload
+streamlit run src/streamlit_app/app.py
 ```
 
-Terminal 2 - Frontend:
+Option 2 - Full Stack (FastAPI + React):
 ```bash
+# Terminal 1 - Backend
+uvicorn src.api.main:app --host 0.0.0.0 --port 8050 --reload
+
+# Terminal 2 - Frontend
 cd frontend
 npm run dev
 ```
 
-Open http://localhost:5173 in your browser.
+Open http://localhost:5173 (React) or http://localhost:8501 (Streamlit) in your browser.
 
 ---
 
